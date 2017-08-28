@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: pycube
+Version: 0.1
+Summary: Python implementation of the Cube cipher
+Home-page: https://github.com/pvial00/pycube
+Author: Karl Zander
+Author-email: pvial00@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Security :: Cryptography
