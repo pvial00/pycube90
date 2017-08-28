@@ -1,6 +1,6 @@
 import sys
 
-# pycube90 v0.1.2
+# pycube90 v0.1.3
 
 class Cube:
     def __init__(self, key):
