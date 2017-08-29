@@ -2,7 +2,7 @@
 A Linear Feedback Shift Register Stream Cipher
 Python Implementation of the Cube90 Cipher
 
-Supports ASCII characters 32-90
+Supports ASCII characters 32-122
 
 # Usage:
 >>> from pycube90 import Cube
