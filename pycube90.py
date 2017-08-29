@@ -1,6 +1,6 @@
 import sys
 
-# pycube90 v0.1.3
+# pycube90 v0.1.4
 
 class Cube:
     def __init__(self, key):
@@ -10,8 +10,8 @@ class Cube:
         self.alphabet_dict = {}
         self.alphabet_dict_rev = {}
         self.start_char = 32
-        self.end_char = 91
-        self.size_factor = 26
+        self.end_char = 123
+        self.size_factor = 16
         for x in range(0,self.end_char):
             self.alphabet_dict[chr(x + self.start_char)] = x
             self.alphabet_dict_rev[x] = chr(x + self.start_char)
@@ -31,7 +31,7 @@ class Cube:
                     section_list.append(alphabet)
                 self.master_list.append(section_list)
 
-        gen_cube(26, 26, 90)
+        gen_cube(16, 16, 90)
         self.init(key)
 
     def key_cube(self, key):
