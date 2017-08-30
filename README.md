@@ -15,3 +15,6 @@ Supports ASCII characters 32-122
 >>> from pycube90 import Cube
 >>> Cube("Test", "NONCE").encrypt("Welcome!")
 >>> Cube("Test", "NONCE").decrypt("pe8LZ0u(")
+
+# Standalone script usage:
+scripts/cube90.py <encrypt/decrypt>
