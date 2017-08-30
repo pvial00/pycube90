@@ -1,9 +1,9 @@
 import sys
 
-# pycube90 v0.1.4
+# pycube90 v0.1.5
 
 class Cube:
-    def __init__(self, key):
+    def __init__(self, key, nonce=""):
         self.key_list = []
         self.key = ""
         self.master_list = []
@@ -33,6 +33,8 @@ class Cube:
 
         gen_cube(16, 16, 90)
         self.init(key)
+        if nonce != "":
+            self.key_cube(nonce)
 
     def key_cube(self, key):
         for section in self.master_list:
@@ -75,6 +77,9 @@ class Cube:
             sub_key += sub
         self.load_key(sub_key)
         return sub_key
+
+    def nonce(self, string):
+        self.key_cube(string)
     
     def init(self, key):
         self.load_key(key)
