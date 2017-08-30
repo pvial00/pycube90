@@ -10,3 +10,8 @@ Supports ASCII characters 32-122
 'pe8LZ0u('
 >>> Cube("Test").decrypt("pe8LZ0u(")
 'Welcome!'
+
+# Passing a  nonce:
+>>> from pycube90 import Cube
+>>> Cube("Test", "NONCE").encrypt("Welcome!")
+>>> Cube("Test", "NONCE").decrypt("pe8LZ0u(")
