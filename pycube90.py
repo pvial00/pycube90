@@ -1,6 +1,6 @@
 import sys
 
-# pycube90 v0.1.6
+# pycube90 v0.1.7
 
 class Cube:
     def __init__(self, key, nonce=""):
@@ -31,7 +31,7 @@ class Cube:
                     section_list.append(alphabet)
                 self.master_list.append(section_list)
 
-        gen_cube(16, 16, 90)
+        gen_cube(16, 16, 91)
         self.init(key)
         if nonce != "":
             self.key_cube(nonce)
@@ -102,6 +102,7 @@ class Cube:
                 for section in self.master_list:
                     for alphabet in section:
                         sub_pos = self.alphabet_dict[letter]
+                        print sub_pos
                         sub = alphabet.pop(sub_pos)
                         alphabet.insert(sub_pos,sub)
                         shift = alphabet.pop(0)
