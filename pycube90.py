@@ -1,6 +1,6 @@
 import sys
 
-# pycube90 v0.1.8
+# pycube90 v0.2.1
 
 class Cube:
     def __init__(self, key, nonce=""):
@@ -50,7 +50,7 @@ class Cube:
                             shuffle = alphabet.pop(0)
                             alphabet.append(shuffle)
                             shuffle = alphabet.pop(2)
-                            alphabet.insert(12,shuffle)
+                            alphabet.insert(44,shuffle)
                 for x in range(char_value):
                     section = self.master_list.pop(sized_pos)
                     newpos = (sized_pos + (x * 128)) % self.size_factor
