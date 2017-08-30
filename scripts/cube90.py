@@ -3,6 +3,7 @@ import sys, select, getpass, os
 
 if select.select([sys.stdin,],[],[],0.0)[0]:
     words = sys.stdin.read()
+    words = words.rstrip('\n')
 else:
     words = raw_input("Enter text to cipher: ")
 
@@ -16,7 +17,7 @@ try:
     key = sys.argv[2]
 except IndexError as ier:
     key = getpass.getpass("Enter key: ")
-print len(words)
+
 if mode == "encrypt":
     print Cube(key).encrypt(words)
 elif mode == "decrypt":
