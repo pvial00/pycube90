@@ -3,7 +3,7 @@ import sys, select, getpass, os
 
 if select.select([sys.stdin,],[],[],0.0)[0]:
     words = sys.stdin.read()
-    words = words.replace('\n', ' ')
+    words = words.replace('\n', '')
 else:
     words = raw_input("Enter text to cipher: ")
 
