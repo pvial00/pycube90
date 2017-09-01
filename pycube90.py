@@ -1,6 +1,6 @@
 import sys, time
 
-# pycube90 v0.2.2
+# pycube90 v0.3.0
 
 class Cube:
     def __init__(self, key, nonce=""):
@@ -10,9 +10,9 @@ class Cube:
         self.alphabet_dict = {}
         self.alphabet_dict_rev = {}
         self.start_char = 32
-        self.end_char = 91
-        self.size_factor = 16
-        for x in range(0,self.end_char):
+        self.alphabet_size = 91
+        self.size_factor = 3
+        for x in range(0,self.alphabet_size):
             self.alphabet_dict[chr(x + self.start_char)] = x
             self.alphabet_dict_rev[x] = chr(x + self.start_char)
 
@@ -31,7 +31,7 @@ class Cube:
                     section_list.append(alphabet)
                 self.master_list.append(section_list)
 
-        gen_cube(16, 16, 91)
+        gen_cube(self.size_factor, self.size_factor, self.alphabet_size)
         self.init(key)
         if nonce != "":
             self.key_cube(nonce)
@@ -51,10 +51,13 @@ class Cube:
                             alphabet.append(shuffle)
                             shuffle = alphabet.pop(2)
                             alphabet.insert(44,shuffle)
-                    for x in range(char_value):
-                        section = self.master_list.pop(sized_pos)
-                        newpos = (sized_pos + x) % self.size_factor
-                        self.master_list.insert(newpos,section)
+        for char in key:
+            char_value = self.alphabet_dict[char]
+            sized_pos = char_value % self.size_factor
+            for x in range(char_value):
+                section = self.master_list.pop(sized_pos)
+                newpos = (sized_pos + x) % self.size_factor
+                self.master_list.insert(newpos,section)
 
     def load_key(self, skey):
         self.key = skey
@@ -97,32 +100,30 @@ class Cube:
     def encrypt(self, words):
         cipher_text = ""
         sub_key = self.key
-        for word in words:
-            for counter, letter in enumerate(word):
-                for section in self.master_list:
-                    for alphabet in section:
-                        sub_pos = self.alphabet_dict[letter]
-                        sub = alphabet.pop(sub_pos)
-                        alphabet.insert(sub_pos,sub)
-                        shift = alphabet.pop(0)
-                        alphabet.append(shift)
-                self.morph_cube(counter, sub_key)
-                sub_key = self.key_scheduler(sub_key)
-                cipher_text += sub
+        for counter, letter in enumerate(words):
+            for section in self.master_list:
+                for alphabet in section:
+                    sub_pos = self.alphabet_dict[letter]
+                    sub = alphabet.pop(sub_pos)
+                    alphabet.insert(sub_pos,sub)
+                    shift = alphabet.pop(0)
+                    alphabet.append(shift)
+            sub_key = self.key_scheduler(sub_key)
+            self.morph_cube(counter, sub_key)
+            cipher_text += sub
         return cipher_text
 
     def decrypt(self, words):
         plain_text = ""
         sub_key = self.key
-        for word in words:
-            for counter, letter in enumerate(word):
-                for section in self.master_list:
-                    for alphabet in section:
-                        sub_pos = alphabet.index(letter)
-                        sub = self.alphabet_dict_rev[sub_pos]
-                        shift = alphabet.pop(0)
-                        alphabet.append(shift)
-                self.morph_cube(counter, sub_key)
-                sub_key = self.key_scheduler(sub_key)
-                plain_text += sub
+        for counter, letter in enumerate(words):
+            for section in self.master_list:
+                for alphabet in section:
+                    sub_pos = alphabet.index(letter)
+                    sub = self.alphabet_dict_rev[sub_pos]
+                    shift = alphabet.pop(0)
+                    alphabet.append(shift)
+            sub_key = self.key_scheduler(sub_key)
+            self.morph_cube(counter, sub_key)
+            plain_text += sub
         return plain_text
