@@ -1,6 +1,6 @@
-import sys
+import sys, time
 
-# pycube90 v0.2.1
+# pycube90 v0.2.2
 
 class Cube:
     def __init__(self, key, nonce=""):
@@ -51,10 +51,10 @@ class Cube:
                             alphabet.append(shuffle)
                             shuffle = alphabet.pop(2)
                             alphabet.insert(44,shuffle)
-                for x in range(char_value):
-                    section = self.master_list.pop(sized_pos)
-                    newpos = (sized_pos + (x * 128)) % self.size_factor
-                    self.master_list.insert(newpos,section)
+                    for x in range(char_value):
+                        section = self.master_list.pop(sized_pos)
+                        newpos = (sized_pos + x) % self.size_factor
+                        self.master_list.insert(newpos,section)
 
     def load_key(self, skey):
         self.key = skey
