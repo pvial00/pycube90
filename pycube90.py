@@ -24,7 +24,7 @@ class Cube:
                         shift = alphabet.pop(0)
                         alphabet.append(shift)
                         shift = alphabet.pop(2)
-                        alphabet.insert(45,shift)
+                        alphabet.insert(44,shift)
                     section_list.append(alphabet)
                 self.master_list.append(section_list)
 
@@ -46,7 +46,7 @@ class Cube:
                             shuffle = alphabet.pop(0)
                             alphabet.append(shuffle)
                             shuffle = alphabet.pop(2)
-                            alphabet.insert(45,shuffle)
+                            alphabet.insert(44,shuffle)
         for char in key:
             char_value = self.alphabet_dict[char]
             sized_pos = char_value % self.size_factor
