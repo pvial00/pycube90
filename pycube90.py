@@ -123,3 +123,20 @@ class Cube:
             self.morph_cube(counter, sub_key)
             plain_text += sub
         return plain_text
+
+class CubePassword:
+    def __init__(self, min=32, max=123):
+        self.char = " "
+        self.min = min
+        self.max = max
+
+    def password(self, length=12, num=1):
+        import os
+        from pycube256 import CubeRandom
+        passw = []
+        self.char = self.char * length
+        for x in range(num):
+            self.entropy = CubeRandom().randrange(self.min, self.max, length)
+            self.cube = Cube(self.entropy)
+            passw.append(self.cube.encrypt(self.char))
+        return passw

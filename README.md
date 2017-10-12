@@ -18,3 +18,8 @@ Supports ASCII characters 32-122
 
 # Standalone script usage:
 scripts/cube90.py <encrypt/decrypt>
+
+# CubePassword
+Password Generator
+passmaker = CubePassword()
+print passmaker.password(length=12, num=1)
