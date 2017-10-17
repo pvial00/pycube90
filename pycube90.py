@@ -1,4 +1,4 @@
-# pycube90 v0.3.2
+# pycube90 v0.5
 
 class Cube:
     def __init__(self, key, nonce=""):
@@ -65,12 +65,10 @@ class Cube:
         for element in key:
             pos = self.alphabet_dict[element]
             sized_pos = pos % self.size_factor
-            section = self.master_list.pop(sized_pos)
-            sub_alpha = section.pop(sized_pos)
+            section = self.master_list[sized_pos]
+            sub_alpha = section[sized_pos]
             sub = sub_alpha.pop(pos)
             sub_alpha.append(sub)
-            section.insert(pos,sub_alpha)
-            self.master_list.insert(sized_pos,section)
             sub_key += sub
         self.load_key(sub_key)
         return sub_key
@@ -86,8 +84,7 @@ class Cube:
                 key_value = self.alphabet_dict[key_element]
                 shift_value = key_value % self.size_factor
                 for alphabet in section:
-                    shift = alphabet.pop(mod_value)
-                    alphabet.insert(shift_value,shift)
+                    alphabet[shift_value], alphabet[mod_value] = alphabet[mod_value], alphabet[shift_value]
             section_shift = self.master_list.pop(key_value % self.size_factor)
             self.master_list.append(section_shift)
 
@@ -99,8 +96,7 @@ class Cube:
             for section in self.master_list:
                 for alphabet in section:
                     sub_pos = self.alphabet_dict[sub]
-                    sub = alphabet.pop(sub_pos)
-                    alphabet.insert(sub_pos,sub)
+                    sub = alphabet[sub_pos]
                     shift = alphabet.pop(0)
                     alphabet.append(shift)
             sub_key = self.key_scheduler(sub_key)
