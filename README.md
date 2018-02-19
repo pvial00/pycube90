@@ -1,5 +1,6 @@
 # pycube90
-A Linear Feedback Shift Register Stream Cipher
+*** Disclaimer - This cipher is meant for entertainment and educational purposes
+ only and should not be used to actually provide good security
 Python Implementation of the Cube90 Cipher
 
 Supports ASCII characters 32-122
